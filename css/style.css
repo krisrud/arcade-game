@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+    font-family: 'Shrikhand', cursive;
+}
+
+.congratDiv {
+
+    min-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background: url('https://image.freepik.com/free-photo/colorful-party-flags-hanging-on-white-wall-background-birthday-anniversary-celebrate-b_7190-2006.jpg');
+    text-align: center;
+    padding: 200px 0 0 0;
+}
+
+@media screen and (max-width: 700px) {
+    canvas: max-width: 100%;
+}
+
+.score-panel {
+    width: 500px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
