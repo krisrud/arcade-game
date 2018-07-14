@@ -13,7 +13,7 @@ This is a classic arcade game.
 
 ## How to play
 
-For playing the game click the [link](https://krisrud.github.io/arcade-game-master/)
+For playing the game click the [link](https://krisrud.github.io/arcade-game/)
 
 
 ## Game dependencies
