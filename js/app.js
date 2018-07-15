@@ -1,12 +1,12 @@
 let timeText;
 let currentTime;
 let startTime = new Date();
-let body = document.getElementsByTagName('body');
+
 let scorePanel = document.getElementsByClassName('score-panel')[0];
 
 
 // Enemies our player must avoid
-var Enemy = function(x, y, v) {
+let Enemy = function(x, y, v) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -47,9 +47,9 @@ let Player = function(x, y) {
 };
 Player.prototype.update = function(dt) {
     borderStop(this);
-    if (player.y + 50 < 60) {
+    if (this.y + 50 < 60) {
         win();
-        player.y = 200;
+        this.y = 200;
     }
 };
 
@@ -88,7 +88,7 @@ timer();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    let allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
@@ -102,27 +102,15 @@ document.addEventListener('keyup', function(e) {
 //collisions
 let collision = function (enemy) {
     if (
-        //player moves from right
-        (player.x <= enemy.x + 100
-            && player.x >= enemy.x
-        && player.y + 20 >= enemy.y
-        &&  player.y + 20 <= enemy.y + 75)
-        //player moves from bottom
-        || (player.y + 20 >= enemy.y + 75
-        && player.y + 20 <= enemy.y
-        && player.x >= enemy.x
-        && player.x <= enemy.x + 90)
-        //player moves from left
-        || (player.y + 20 >= enemy.y
-        && player.y + 20 <= enemy.y + 75
-        && player.x + 80 >= enemy.x
-        && player.x + 20 <= enemy.x + 90)
-        //player moves from top
-        || (player.x >= enemy.x
-        && player.x <= enemy.x + 90
-        && player.y + 90 >= enemy.y
-        && player.y + 90 <= enemy.y + 75)
-    ) { player.x = 410;
+        ((player.x > enemy.x
+        && player.x < enemy.x + 90)
+        || (player.x + 80 > enemy.x
+        && player.x + 80 < enemy.x + 90))
+        && ((player.y + 20 > enemy.y
+        && player.y + 20 < enemy.y + 75)
+        || (player.y + 60 > enemy.y
+            && player.y + 60 < enemy.y + 75))
+        ) { player.x = 410;
         player.y = 440;
     }
 };
@@ -130,24 +118,21 @@ let collision = function (enemy) {
 //player doesn't cross the borders
 
 let borderStop = function (player) {
-    if (player.x > 420) {
-        player.x = 420;
-    };
-    if (player.y > 450) {
-        player.y = 450;
-    };
+    if (player.x > 410) {
+        player.x = 410;
+    }
+    if (player.y > 440) {
+        player.y = 440;
+    }
     if ((player.x) < 1) {
         (player.x) = 1;
-    };
+    }
     if (player.y < 1) {
         player.y = 1;
-    };
+    }
 };
 
-let win = function (player) {
-
-
-
+let win = function () {
         document.body.innerHTML = "";
         let time = new Date() - startTime;
         let congratDiv = document.createElement("div");
@@ -165,8 +150,6 @@ let win = function (player) {
         let parText2 = document.createTextNode("Your time: " + time/1000 + " seconds." +  "  Wanna play again?");
         myPar2.appendChild(parText2);
         congratDiv.appendChild(myPar2);
-
-
 };
 
 function timer() {
@@ -175,4 +158,4 @@ function timer() {
     timeDiv.className = "timeDiv";
     timeText = document.createTextNode("");
     timeDiv.appendChild(timeText);
-};
+}
