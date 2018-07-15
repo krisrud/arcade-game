@@ -1,9 +1,7 @@
 let timeText;
 let currentTime;
 let startTime = new Date();
-
 let scorePanel = document.getElementsByClassName('score-panel')[0];
-
 
 // Enemies our player must avoid
 let Enemy = function(x, y, v) {
@@ -81,9 +79,7 @@ setInterval(function () {
     timeText.textContent = "Time: " + currentTime  + " sec";
 }, 1000);
 
-
 timer();
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -97,7 +93,6 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
 
 //collisions
 let collision = function (enemy) {
@@ -116,7 +111,6 @@ let collision = function (enemy) {
 };
 
 //player doesn't cross the borders
-
 let borderStop = function (player) {
     if (player.x > 410) {
         player.x = 410;
